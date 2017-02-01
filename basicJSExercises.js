@@ -76,16 +76,17 @@ HINT: Use indexOf() and slice()
  --------------------------- */
 
 function remove_first_occurrence(text, searchstring) {
-  var text = "Please locate where 'locate' occurs!";
-  var searchstring = text.search("locate");
-  return "edited text";
+  var index = text.indexOf(searchstring);
+  if (index === -1) {
+    return text;
+  }
+  return text.slice(0, index) + text.slice(index + searchstring.length);
 
 }
 
 console.log("Remove First Occurrence:");
 /* Uncomment the following to check */
   console.log(remove_first_occurrence("The quick brown fox jumps over the lazy dog", 'the'));
-console.log('The index of "new" from the end is ' + text.indexOf('new'));
 
 
 
