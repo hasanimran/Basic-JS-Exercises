@@ -76,16 +76,17 @@ HINT: Use indexOf() and slice()
  --------------------------- */
 
 function remove_first_occurrence(text, searchstring) {
-  var text = "Please locate where 'locate' occurs!";
-  var searchstring = text.search("locate");
-  return "edited text";
+  var index = text.indexOf(searchstring);
+  if (index === -1) {
+    return text;
+  }
+  return text.slice(0, index) + text.slice(index + searchstring.length);
 
 }
 
 console.log("Remove First Occurrence:");
 /* Uncomment the following to check */
   console.log(remove_first_occurrence("The quick brown fox jumps over the lazy dog", 'the'));
-console.log('The index of "new" from the end is ' + text.indexOf('new'));
 
 
 
@@ -105,12 +106,13 @@ HINT: Use join(), split() and sort() fucntions
  --------------------------- */
 
 function alphabetic_order(word) {
-  return "rearranged word";
+
+  return word.split('').sort().join('');
 }
 
 console.log("Alphabetic Order:");
 /* Uncomment the following to check */
-  // console.log(alphabetic_order("webmaster"));
+   console.log(alphabetic_order("webmaster"));
 
 
 
@@ -130,12 +132,30 @@ a occurs 5 times
  --------------------------- */
 
 function most_frequent(arr) {
-  console.log("Most frequently occuring item in arr");
+
+var mostfreq = 1;
+var counter = 0;
+var item;
+for (var i=0; i<arr.length; i++)
+{
+        for (var j=i; j<arr.length; j++)
+        {
+                if (arr[i] == arr[j])
+                 counter++;
+                if (mostfreq<counter)
+                {
+                  mostfreq=counter; 
+                  item = arr[i];
+                }
+        }
+        counter=0;
+}
+console.log(item+" occurs " +mostfreq +" times ") ;
 }
 
 console.log("Most Frequent Item:");
 /* Uncomment the following to check */
-  // most_frequent([3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3]);
+  most_frequent([3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3]);
 
 
 
@@ -173,11 +193,30 @@ Output:
 
 function fizzbuzz(n) {
   console.log("Print the Fizz, Buzz and FizzBuzz numbers in 1 to n");
+  for ( var i = 1; i <= 16; i++ )
+{
+  if ( i%3 === 0 && i%5 === 0 )
+  {
+    console.log( i + " FizzBuzz" );
+  }
+  else if ( i%3 === 0 ) 
+  {
+    console.log(i+ " Fizz" );
+  }
+  else if ( i%5 === 0 ) 
+  {
+    console.log(i+ " Buzz" );
+  }
+  else
+  {
+    console.log(i);
+  }
+}
 }
 
 console.log("FizzBuzz:");
 /* Uncomment the following to check */
-  // fizzbuzz(100);
+   fizzbuzz(100);
 
 
 
@@ -196,11 +235,15 @@ HINT: Use Math.ceil() and Math.random()
 
 function guessing_game(guess) {
   // Get a random integer from 1 to 10 inclusive
-  console.log("matched or unmatched?");
+  var num = Math.ceil(Math.random() * 10);
+ if (guess == num)
+   alert('Good Work');
+  else
+   alert('Not matched, the number was ' + num);
 }
 
 console.log("Guessing Game:");
 /* Uncomment the following to check */
-  // var guess = prompt('Guess the number between 1 and 10 inclusive');
-  // console.log("User guessed: "+ guess);
-  // guessing_game(guess);
+   var guess = prompt('Guess the number between 1 and 10 inclusive');
+   console.log("User guessed: "+ guess);
+   guessing_game(guess);
